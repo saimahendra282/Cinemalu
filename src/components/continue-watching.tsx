@@ -33,12 +33,13 @@ export function ContinueWatching() {
         if (stored) {
           const data = JSON.parse(stored);
           // Filter out items that are completed (>95% watched)
-          const filtered = Object.fromEntries(
-            Object.entries(data).filter(([, item]: [string, any]) => {
-              const progressPercent = (item.progress.watched / item.progress.duration) * 100;
-              return progressPercent > 5 && progressPercent < 95;
-            })
-          );
+          const filtered: ContinueWatchingData = {};
+          Object.entries(data).forEach(([key, item]: [string, any]) => {
+            const progressPercent = (item.progress.watched / item.progress.duration) * 100;
+            if (progressPercent > 5 && progressPercent < 95) {
+              filtered[key] = item;
+            }
+          });
           setWatchData(filtered);
         }
       } catch (error) {

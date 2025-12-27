@@ -52,12 +52,13 @@ export default function MovieDetailsPage() {
         <div className="container mx-auto px-4 py-8 text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Movie Not Found</h1>
           <p className="text-gray-400 mb-8">The movie you're looking for doesn't exist or has been removed.</p>
-          <Button asChild>
-            <Link href="/">
-              <ArrowLeftIcon className="w-4 h-4 mr-2" />
-              Go Home
-            </Link>
-          </Button>
+          <Link 
+            href="/"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-blue-600 text-white shadow hover:bg-blue-700"
+          >
+            <ArrowLeftIcon className="w-4 h-4 mr-2" />
+            Go Home
+          </Link>
         </div>
       </div>
     );
@@ -127,12 +128,13 @@ export default function MovieDetailsPage() {
               </p>
               
               <div className="flex space-x-4">
-                <Button asChild size="lg" className="text-lg px-8 bg-white text-black hover:bg-gray-200">
-                  <Link href={`/movie/${movie.id}/watch`}>
-                    {/* <PlayIcon className="w-5 h-5 mr-2" /> */}
-                    Watch Now
-                  </Link>
-                </Button>
+                <Link 
+                  href={`/movie/${movie.id}/watch`}
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium transition-colors px-8 h-10 bg-white text-black hover:bg-gray-200"
+                >
+                  {/* <PlayIcon className="w-5 h-5 mr-2" /> */}
+                  Watch Now
+                </Link>
                 
                 <Button variant="outline" size="lg">
                   <ClockIcon className="w-5 h-5 mr-2" />

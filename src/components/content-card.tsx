@@ -39,12 +39,12 @@ export function ContentCard({
 
   const title =
     contentType === 'movie'
-      ? content.title
+      ? (content as Movie).title
       : (content as TVShow).name;
 
   const releaseDate =
     contentType === 'movie'
-      ? content.release_date
+      ? (content as Movie).release_date
       : (content as TVShow).first_air_date;
 
   const detailsHref = `/${contentType}/${content.id}`;
@@ -118,16 +118,13 @@ export function ContentCard({
               </p>
             )}
             
-            <Button
-              asChild
-              size="sm"
-              className="w-full bg-white text-black hover:bg-gray-200"
+            <Link 
+              href={detailsHref}
+              className="w-full bg-white text-black hover:bg-gray-200 inline-flex items-center justify-center whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-8 px-3"
             >
-              <Link href={detailsHref}>
-                {/* <PlayIcon className="mr-2 h-4 w-4" /> */}
-                Open Now
-              </Link>
-            </Button>
+              {/* <PlayIcon className="mr-2 h-4 w-4" /> */}
+              Open Now
+            </Link>
           </div>
         </div>
 

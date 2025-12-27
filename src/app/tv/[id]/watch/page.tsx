@@ -93,15 +93,19 @@ export default function TVShowWatchPage() {
             {error || 'The episode you are looking for is not available for streaming.'}
           </p>
           <div className="space-x-4">
-            <Button asChild variant="default">
-              <Link href={`/tv/${params.id}`}>
-                <ArrowLeftIcon className="w-4 h-4 mr-2" />
-                Back to Show
-              </Link>
-            </Button>
-            <Button asChild variant="secondary">
-              <Link href="/tv">Browse TV Shows</Link>
-            </Button>
+            <Link 
+              href={`/tv/${params.id}`}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-blue-600 text-white shadow hover:bg-blue-700"
+            >
+              <ArrowLeftIcon className="w-4 h-4 mr-2" />
+              Back to Show
+            </Link>
+            <Link 
+              href="/tv"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-gray-800 text-white shadow-sm hover:bg-gray-700"
+            >
+              Browse TV Shows
+            </Link>
           </div>
         </div>
       </div>

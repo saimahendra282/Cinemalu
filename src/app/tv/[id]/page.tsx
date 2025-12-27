@@ -129,12 +129,13 @@ export default function TVShowDetailsPage() {
               </p>
               
               <div className="flex space-x-4">
-                <Button asChild size="lg" className="text-lg px-8 bg-white text-black hover:bg-gray-200">
-                  <Link href={watchHref}>
-                    {/* <PlayIcon className="w-5 h-5 mr-2" /> */}
-                    Watch S1E1
-                  </Link>
-                </Button>
+                <Link 
+                  href={watchHref}
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium transition-colors px-8 h-10 bg-white text-black hover:bg-gray-200"
+                >
+                  {/* <PlayIcon className="w-5 h-5 mr-2" /> */}
+                  Watch S1E1
+                </Link>
                 
                 <Button variant="outline" size="lg">
                   <ClockIcon className="w-5 h-5 mr-2" />

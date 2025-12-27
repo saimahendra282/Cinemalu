@@ -59,17 +59,19 @@ export default function MovieWatchPage() {
             {error || 'This movie is not available for streaming right now.'}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild>
-              <Link href={`/movie/${params.id}`}>
-                <ArrowLeftIcon className="w-4 h-4 mr-2" />
-                Movie Details
-              </Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/">
-                Go Home
-              </Link>
-            </Button>
+            <Link 
+              href={`/movie/${params.id}`}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-blue-600 text-white shadow hover:bg-blue-700"
+            >
+              <ArrowLeftIcon className="w-4 h-4 mr-2" />
+              Movie Details
+            </Link>
+            <Link 
+              href="/"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 border border-gray-700 bg-transparent shadow-sm hover:bg-gray-800 hover:text-white"
+            >
+              Go Home
+            </Link>
           </div>
         </div>
       </div>
@@ -82,15 +84,12 @@ export default function MovieWatchPage() {
       <div className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              asChild
+            <Link 
+              href={`/movie/${params.id}`}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:bg-gray-800 hover:text-white h-9 w-9"
             >
-              <Link href={`/movie/${params.id}`}>
-                <ArrowLeftIcon className="w-5 h-5" />
-              </Link>
-            </Button>
+              <ArrowLeftIcon className="w-5 h-5" />
+            </Link>
             <div>
               <h1 className="text-lg font-semibold text-white truncate">
                 {movie.title}
@@ -101,12 +100,13 @@ export default function MovieWatchPage() {
             </div>
           </div>
           
-          <Button variant="outline" size="sm" asChild>
-            <Link href={`/movie/${movie.id}`}>
-              <InformationCircleIcon className="w-4 h-4 mr-2" />
-              Details
-            </Link>
-          </Button>
+          <Link 
+            href={`/movie/${movie.id}`}
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-8 px-3 border border-gray-700 bg-transparent shadow-sm hover:bg-gray-800 hover:text-white"
+          >
+            <InformationCircleIcon className="w-4 h-4 mr-2" />
+            Details
+          </Link>
         </div>
       </div>
       

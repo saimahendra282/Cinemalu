@@ -9,16 +9,30 @@ import { Input } from '@/components/ui/input';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import type { Movie, TVShow } from '@/types';
 
+// Disable static generation for this page
+export const dynamic = 'force-dynamic';
+
 export default function SearchPage() {
-  const searchParams = useSearchParams();
-  const initialQuery = searchParams.get('q') || '';
+  const [searchParams, setSearchParams] = useState<URLSearchParams | null>(null);
+  const [initialQuery, setInitialQuery] = useState('');
   
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState('');
   const [results, setResults] = useState<(Movie | TVShow)[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState<string | null>(null);
+
+  // Initialize search params only on client side
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setSearchParams(params);
+      const queryParam = params.get('q') || '';
+      setInitialQuery(queryParam);
+      setQuery(queryParam);
+    }
+  }, []);
 
   const performSearch = async (searchQuery: string, page: number = 1) => {
     if (!searchQuery.trim()) return;
@@ -54,7 +68,8 @@ export default function SearchPage() {
   };
 
   useEffect(() => {
-    if (initialQuery) {
+    // Only run in browser, not during server-side rendering
+    if (typeof window !== 'undefined' && initialQuery && initialQuery.trim()) {
       performSearch(initialQuery);
     }
   }, [initialQuery]);

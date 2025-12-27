@@ -1,11 +1,47 @@
-import NodeCache from 'node-cache';
+// Simple in-memory cache implementation
+interface CacheItem<T> {
+  value: T;
+  expiry: number;
+}
 
-// Cache configuration
-const cache = new NodeCache({
-  stdTTL: 60 * 60, // 1 hour default
-  checkperiod: 60 * 10, // Check for expired keys every 10 minutes
-  useClones: false,
-});
+class SimpleCache {
+  private cache: Map<string, CacheItem<any>> = new Map();
+
+  get<T>(key: string): T | undefined {
+    const item = this.cache.get(key);
+    if (!item) return undefined;
+    
+    if (Date.now() > item.expiry) {
+      this.cache.delete(key);
+      return undefined;
+    }
+    
+    return item.value;
+  }
+
+  set<T>(key: string, value: T, ttlSeconds?: number): boolean {
+    const ttl = ttlSeconds || 3600; // 1 hour default
+    const expiry = Date.now() + (ttl * 1000);
+    
+    this.cache.set(key, { value, expiry });
+    return true;
+  }
+
+  delete(key: string): number {
+    return this.cache.delete(key) ? 1 : 0;
+  }
+
+  clear(): void {
+    this.cache.clear();
+  }
+
+  size(): number {
+    return this.cache.size;
+  }
+}
+
+// Create a single instance
+const cache = new SimpleCache();
 
 // Cache durations for different types of data
 export const CACHE_DURATION = {
@@ -38,7 +74,7 @@ export function setCached<T>(key: string, value: T, ttl?: number): boolean {
 
 export function deleteCached(key: string): number {
   try {
-    return cache.del(key);
+    return cache.delete(key);
   } catch (error) {
     console.error('Cache delete error:', error);
     return 0;
@@ -47,12 +83,14 @@ export function deleteCached(key: string): number {
 
 export function flushCache(): void {
   try {
-    cache.flushAll();
+    cache.clear();
   } catch (error) {
     console.error('Cache flush error:', error);
   }
 }
 
 export function getCacheStats() {
-  return cache.getStats();
+  return {
+    size: cache.size(),
+  };
 }
