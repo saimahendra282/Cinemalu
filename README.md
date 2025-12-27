@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# hallo visitor
+I vibe-coded this repo 
+What it does is simple:
 
-## Getting Started
+Fetches movie metadata from the TMDB API
 
-First, run the development server:
+Fetches streaming links from VidLink
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Combines both to deliver instant movie streaming
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+That’s it — browse, click, watch.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+TMDB → movie details (title, poster, description, etc.)
 
-## Learn More
+VidLink → video streaming embed
 
-To learn more about Next.js, take a look at the following resources:
+No accounts, no storage, just watch and leave
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Work in Progress
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+I’m currently exploring:
 
-## Deploy on Vercel
+Multi-audio support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Telugu / regional movie sources
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Better streaming providers and fallbacks
+
+This project will be updated again and again as new sources are added.
+
+# Important Note
+
+Please use an ad blocker while watching content on this site.
+Embedded players may open ads in new tabs.
+
+# Disclaimer
+
+This project is for learning and experimentation purposes only..
